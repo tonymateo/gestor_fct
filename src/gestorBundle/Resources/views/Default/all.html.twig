@@ -1,0 +1,27 @@
+<link rel="stylesheet" href="{{ asset('css/estilos.css') }}" />
+<table id="empresas">
+      <tbody>
+        <th class="titulo" colspan="6">Todas las empresas</th>
+        <tr>
+          <th>Nombre</th>
+          <th>Dirección</th>
+          <th>CP</th>
+          <th>Telefono 1</th>
+          <th>Telefono 2</th>
+          <th>Fecha de creacion</th>
+        </tr>
+
+
+        {% for empresa in empresas %}
+          <tr>
+            <td>{{ empresa.nombre }}</td>
+            <td>{{ empresa.direccion }}</td>
+            <td>{{ empresa.cp }}</td>
+            <td>{{ empresa.telefono1 }}</td>
+            <td>{{ empresa.telefono2 }}</td>
+            <td>{{ empresa.fechaDeCreacion|date('Y-m-d') }}</td>
+          </tr>
+        {% endfor %}
+
+      </tbody>
+    </table>
