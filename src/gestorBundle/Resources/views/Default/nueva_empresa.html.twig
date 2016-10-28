@@ -1,0 +1,49 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+
+{{ form_start(form) }}
+<div class="formulario">
+  <div class="form-group">
+      {{ form_label(form.nombre) }}
+      {{ form_widget(form.nombre, {'attr': {'class': 'form-control'}}) }}
+      {{ form_errors(form.nombre) }}
+  </div>
+
+  <div class="form-group">
+      {{ form_label(form.direccion) }}
+      {{ form_widget(form.direccion, {'attr': {'class': 'form-control'}}) }}
+      {{ form_errors(form.direccion) }}
+  </div>
+
+  <div class="form-group">
+      {{ form_label(form.cp) }}
+      {{ form_widget(form.cp, {'attr': {'class': 'form-control'}}) }}
+      {{ form_errors(form.cp) }}
+  </div>
+
+  <div class="form-group">
+      {{ form_label(form.telefono1) }}
+      {{ form_widget(form.telefono1 , {'attr': {'class': 'form-control'}}) }}
+      {{ form_errors(form.telefono1) }}
+  </div>
+
+  <div class="form-group">
+      {{ form_label(form.telefono2) }}
+      {{ form_widget(form.telefono2, {'attr': {'class': 'form-control'}}) }}
+      {{ form_errors(form.telefono2) }}
+  </div>
+
+  <div class="form-group">
+      {{ form_label(form.fechaDeCreacion) }}
+      {{ form_widget(form.fechaDeCreacion, {'attr': {'class': 'form-control'}}) }}
+      {{ form_errors(form.fechaDeCreacion) }}
+  </div>
+</div>
+
+  <div class="botones">
+    {{ form_widget(form.guardar, {'attr': {'class': 'btn btn-info'}}) }}
+    {{ form_widget(form.borrar, {'attr': {'class': 'btn btn-danger'}}) }}
+  </div>
+
+{{ form_end(form) }}
+{% endblock %}
