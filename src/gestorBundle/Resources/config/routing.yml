@@ -9,3 +9,7 @@ all_empresa:
 nueva_empresa:
     path:     /empresa/new
     defaults: { _controller: gestorBundle:Empresa:new}
+
+all_alumno:
+    path:     /alumno/all
+    defaults: { _controller: gestorBundle:Alumno:all}
