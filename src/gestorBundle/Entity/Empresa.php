@@ -262,4 +262,5 @@ class Empresa
     {
         return $this->alumno;
     }
+
 }
