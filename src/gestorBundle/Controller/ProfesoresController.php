@@ -4,6 +4,8 @@ namespace gestorBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use gestorBundle\Entity\Profesores;
+use gestorBundle\Form\ProfesoresType;
+use Symfony\Component\HttpFoundation\Request;
 
 class ProfesoresController extends Controller
 {
@@ -17,32 +19,28 @@ class ProfesoresController extends Controller
       return $this->render('gestorBundle:Default:profesores_all.html.twig', array("profesores"=>$profesores));
   }
 
-  /*public function nuevoAlumnoAction()
-    {
-      //Alumno generada
-      $alumno=new Alumno();
-      $alumno->setNombre("Toni");
-      $alumno->setApellido1("Mateo");
-      $alumno->setApellido2("Vidal");
-      $alumno->setCiclo("2 DAW");
+  public function nuevoProfesorAction(Request $request)
+  {
+    $profesor = new Profesores();
+    $form = $this->createForm(ProfesoresType::class,$profesor);
 
+    $form -> handleRequest($request);
+    if ($form->isSubmitted() && $form->isValid()) {
+       // $form->getData() holds the submitted values
+       // but, the original `$task` variable has also been updated
+       //Si el usuario le ha dado a enviar y los datos son correctos, entonces recoge los datos del formulario para posteriormente insertatlos
+       $profesor = $form->getData();
 
-      //Nuevo empresa para ese alumno
-      $empresa = new Empresa();
-      $empresa->setNombre("Florida");
-      $empresa->setDireccion("Catarroja");
-      $empresa->setCp("48903");
-      $empresa->setTelefono1("892738734");
-      $empresa->setTelefono2("893174384");
-      $empresa->setFechaDeCreacion(new \DateTime());
+       // ... perform some action, such as saving the task to the database
+       // for example, if Task is a Doctrine entity, save it!
+       $em = $this->getDoctrine()->getManager();
+       $em->persist($profesor);
+       $em->flush();
 
-      //Ligar el alumno a nuestro empresa
-      $empresa->setEmpresa($alumno);
+       //Una vez insertado en la base de datos redirigimos hacia todos los profesores
+       return $this->redirectToRoute('all_profesores');
+    }
 
-      //Guardar en la BD
-      $em = $this->getDoctrine()->getManager();
-      $em->persist($alumno);
-      $em->persist($empresa);
-      $em->flush();
-    }*/
+    return $this->render('gestorBundle:Default:nuevo_profesor.html.twig', array("form"=>$form->createView()));
+  }
 }

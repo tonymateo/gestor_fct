@@ -14,12 +14,12 @@ all_alumno:
     path:     /alumno/all
     defaults: { _controller: gestorBundle:Alumno:all}
 
-api_alumnos_get:
+api_empresas_get:
     path:     /api/empresas
     defaults: { _controller: gestorBundle:Api:empresasGet }
     methods: [GET]
 
-api_alumnos_post:
+api_empresas_post:
     path:     /api/empresas
     defaults: { _controller: gestorBundle:Api:empresasPost }
     methods: [POST]
@@ -27,3 +27,11 @@ api_alumnos_post:
 all_profesores:
     path:     /profesores/all
     defaults: { _controller: gestorBundle:Profesores:all }
+
+nuevo_profesor:
+    path:     /profesores/new
+    defaults: { _controller: gestorBundle:Profesores:nuevoProfesor}
+
+api_profesores_get:
+    path:     /api/profesores
+    defaults: { _controller: gestorBundle:Api:profesoresGet }

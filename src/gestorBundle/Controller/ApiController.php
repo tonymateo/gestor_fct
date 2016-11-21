@@ -12,6 +12,7 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\HttpFoundation\Request;
 
 use gestorBundle\Entity\Empresa;
+use gestorBundle\Entity\Profesores;
 
 class ApiController extends Controller
 {
@@ -39,6 +40,28 @@ class ApiController extends Controller
     $response = new JsonResponse($data, 400);
     return $response;
     //return $this->json($empresas);
+  }
+
+  //Serializo profesores con los datos que voy a recoger por JSON
+  private function serializeProfesores(Profesores $profesor){
+    return array(
+          'nombre' => $profesor->getNombre(),
+          'apellidos' => $profesor->getApellidos(),
+          'departamento' => $profesor->getDepartamento(),
+      );
+  }
+
+  //Metodo que uso para recoger los profesores que hay y que posteriormente meteré en el JSON
+  public function profesoresGetAction(){
+    $repository = $this->getDoctrine()->getRepository('gestorBundle:Profesores');//obtener manejador de base de datos para la entidad
+    $profesores = $repository->findAll();//extraer todos los datos para todas las filas
+
+    $data = array('profesores' => array());
+    foreach ($profesores as $profesor) {
+      $data['profesores'][] = $this->serializeProfesores($profesor);
+    }
+    $response = new JsonResponse($data, 400);
+    return $response;
   }
 
   /*$empresa1 = new Empresa();
