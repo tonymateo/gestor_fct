@@ -23,3 +23,7 @@ api_alumnos_post:
     path:     /api/empresas
     defaults: { _controller: gestorBundle:Api:empresasPost }
     methods: [POST]
+
+all_profesores:
+    path:     /profesores/all
+    defaults: { _controller: gestorBundle:Profesores:all }
