@@ -1,3 +1,7 @@
+admin:
+    resource: "@AdminBundle/Resources/config/routing.yml"
+    prefix:   /admin/
+
 gestor:
     resource: "@gestorBundle/Resources/config/routing.yml"
     prefix:   /
@@ -5,3 +9,6 @@ gestor:
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
+
+logout:
+    path: /logout

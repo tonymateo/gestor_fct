@@ -35,3 +35,11 @@ nuevo_profesor:
 profesores_get:
     path:     /api/profesores
     defaults: { _controller: gestorBundle:Api:profesoresGet }
+
+nuevo_registro:
+    path:     /registro
+    defaults: { _controller: gestorBundle:Registro:registro }
+
+login:
+    path:     /login
+    defaults: { _controller: gestorBundle:Registro:login }
