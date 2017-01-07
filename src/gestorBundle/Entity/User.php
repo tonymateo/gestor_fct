@@ -4,6 +4,7 @@ namespace gestorBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User
@@ -26,6 +27,13 @@ class User implements UserInterface
      * @var string
      *
      * @ORM\Column(name="username", type="string", length=255, unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min = 4,
+     *      max = 16,
+     *      minMessage = "El usuario debe tener un mínimo de 4 letras",
+     *      maxMessage = "El usuario debe tener un máximo de 16 letras"
+     * )
      */
     private $username;
 
@@ -33,6 +41,11 @@ class User implements UserInterface
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255, unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Email(
+     *     message = "El email introducido no es válido",
+     *     checkMX = true
+     * )
      */
     private $email;
 
@@ -43,6 +56,13 @@ class User implements UserInterface
      */
     private $password;
 
+    /**
+     * @Assert\Regex(
+     *     pattern = "/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/",
+     *     message = "La contraseña debe tener 1 letra mayuscula, letra y numeros, y debe contener mas de 8 caracteres"
+     * )
+     */
+    private $plainPassword;
 
     /**
      * Get id
@@ -54,8 +74,6 @@ class User implements UserInterface
         return $this->id;
     }
 
-    private $plainPassword;
-
     public function getPlainPassword()
     {
         return $this->plainPassword;
@@ -65,7 +83,7 @@ class User implements UserInterface
     {
         $this->plainPassword = $password;
     }
-    
+
     /**
      * Set username
      *
