@@ -65,6 +65,12 @@ class User implements UserInterface
     private $plainPassword;
 
     /**
+     *
+     * @ORM\Column(name="roles", type="json_array")
+     */
+    private $roles = array();
+
+    /**
      * Get id
      *
      * @return int
@@ -165,8 +171,22 @@ class User implements UserInterface
         return null;
     }
 
+    /**
+     * Set roles
+     *
+     * @param string $roles
+     *
+     * @return User
+     */
+    public function setRoles(array $roles)
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
     public function getRoles() {
-      return array('ROLE_USER');
+      return $this->roles;
     }
 
     public function eraseCredentials(){}

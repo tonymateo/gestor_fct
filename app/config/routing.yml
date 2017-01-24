@@ -1,6 +1,6 @@
 admin:
     resource: "@AdminBundle/Resources/config/routing.yml"
-    prefix:   /admin/
+    prefix:   /admin
 
 gestor:
     resource: "@gestorBundle/Resources/config/routing.yml"
@@ -12,3 +12,6 @@ app:
 
 logout:
     path: /logout
+
+logout_admin:
+    path: /admin/logout

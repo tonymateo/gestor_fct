@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -65,21 +64,25 @@
                         <a href="/alumno/all"><i class="fa fa-fw fa-dashboard"></i> Alumnos</a>
                     </li>
                     <li>
-                        <a href="/empresa/new"><i class="fa fa-fw fa-bar-chart-o"></i> Nueva Empresa</a>
+                        <a href="/empresa/new"><i class="fa fa-fw fa-edit"></i> Nueva Empresa</a>
                     </li>
                     <li>
-                        <a href="/api/empresas"><i class="fa fa-fw fa-dashboard"></i> JSON Empresas</a>
+                        <a href="/api/empresas"><i class="fa fa-fw fa-file"></i> JSON Empresas</a>
                     </li>
                     <li>
                         <a href="/profesores/all"><i class="fa fa-fw fa-dashboard"></i> Profesores</a>
                     </li>
                     <li>
-                        <a href="/profesores/new"><i class="fa fa-fw fa-bar-chart-o"></i> Nuevo Profesor</a>
+                        <a href="/profesores/new"><i class="fa fa-fw fa-edit"></i> Nuevo Profesor</a>
                     </li>
                     <li>
-                        <a href="/api/profesores"><i class="fa fa-fw fa-dashboard"></i> JSON Profesores</a>
+                        <a href="/api/profesores"><i class="fa fa-fw fa-file"></i> JSON Profesores</a>
                     </li>
-
+                    {% if is_granted('ROLE_SUPER_ADMIN') %}
+                      <li>
+                          <a href="/admin/gestor"><i class="fa fa-fw fa-wrench"></i> Gestor Usuarios</a>
+                      </li>
+                    {% endif %}
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
