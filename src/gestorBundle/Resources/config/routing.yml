@@ -44,3 +44,11 @@ nuevo_registro:
 login:
     path:     /login
     defaults: { _controller: gestorBundle:Registro:login }
+
+all_conf:
+    path:     /config/all
+    defaults: { _controller: gestorBundle:Conf:all}
+
+nuevo_conf:
+    path:     /config/new
+    defaults: { _controller: gestorBundle:Conf:new }

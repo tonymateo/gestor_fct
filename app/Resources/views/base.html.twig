@@ -83,6 +83,16 @@
                           <a href="/admin/gestor"><i class="fa fa-fw fa-wrench"></i> Gestor Usuarios</a>
                       </li>
                     {% endif %}
+                    {% if is_granted('ROLE_SUPER_ADMIN') %}
+                      <li>
+                          <a href="/conf/all"><i class="fa fa-fw fa-wrench"></i> Listado conf</a>
+                      </li>
+                    {% endif %}
+                    {% if is_granted('ROLE_SUPER_ADMIN') %}
+                      <li>
+                          <a href="/conf/new"><i class="fa fa-fw fa-wrench"></i> Nueva conf</a>
+                      </li>
+                    {% endif %}
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
