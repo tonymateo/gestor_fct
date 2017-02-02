@@ -35,6 +35,7 @@ nuevo_profesor:
 profesores_get:
     path:     /api/profesores
     defaults: { _controller: gestorBundle:Api:profesoresGet }
+    methods: [GET]
 
 nuevo_registro:
     path:     /registro

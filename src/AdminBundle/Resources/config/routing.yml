@@ -9,3 +9,7 @@ admin_new:
 gestor:usuarios:
     path:     /gestor
     defaults: { _controller: AdminBundle:Default:getAll }
+
+button_action_route:
+    path:     /gestor/quitarRol
+    defaults: { _controller: AdminBundle:Default:quitarRoles }

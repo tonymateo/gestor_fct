@@ -64,25 +64,30 @@ class ApiController extends Controller
     return $response;
   }
 
-  /*$empresa1 = new Empresa();
-
-  private function serializeEmpresa($empresa1, $data){
-
-    return array(
-          $empresa1.setNombre => $data;
-
-
-      );
-  }
-
-
-
-  public function empresasPostAction(Empresa $data)
+  public function empresasPostAction(Request $request)
   {
+    $connection=$this->getDoctrine()->getManager();
+    $response = new JsonResponse();
 
-    $em = $this->getDoctrine()->getManager();
-    $em->persist($empresa);
-    $em->flush();
+    $content = $request->getContent();
+    $content=json_decode($content);
+
+    $empresa=new empresa();
+    $empresa->setNombre($content->nombre);
+    $empresa->setDireccion($content->direccion);
+    $empresa->setCp($content->cp);
+    $empresa->setTelefono1($content->telefono1);
+    $empresa->setTelefono2($content->telefono2);
+    $empresa->setFechaDeCreacion(new \DateTime($content->fechaDeCreacion));
+
+    $connection->persist($empresa);
+    $connection->flush();
+    if($empresa->getId()>0){
+      $data="Funciona";
+    }else {
+      $data="No va";
+    }
+
+    return $response->setData(array('Estado' => $data),200);
   }
-  */
 }

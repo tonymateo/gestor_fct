@@ -31,30 +31,48 @@
                 {% endfor %}
               </td>
               <td>
-                <select class="" name="quitarRol">
+                <select class="rolesBD" name="quitarRol">
                     <option value=""></option>
                   {% for rol in user.roles %}
-                    <option value="">{{rol}}</option>
+                    <option value=""+{{rol}}>{{rol}}</option>
                   {% endfor %}
                 </select>
               </td>
               <td>
-                <select class="" name="añadirRol">
+                <select class="rolesInsertar" name="añadirRol">
                   <option value=""></option>
                   <option value="ROLE_USER">ROLE_USER</option>
                   <option value="ROLE_ADMIN">ROLE_ADMIN</option>
                   <option value="ROLE_SUPER_ADMIN">ROLE_SUPER_ADMIN</option>
                 </select>
               </td>
-              <td><button class="btn btn-primary" type="submit" name="button">Confirmar</button></td>
-              <td><button class="btn btn-danger" type="reset" name="button">Borrar</button></td>
+              <td><button class="btn btn-primary" id="botonPrueba" type="button" name="button">Confirmar</button></td>
             </tr>
           </form>
           {% endfor %}
         </tbody>
       </table>
 
-      <div class="col-md-12">
-
-      </div>
-{% endblock %}
+    {% endblock %}
+    {% block javascripts %}
+      <script>
+        $(document).on('click','#botonPrueba',function(){
+          //Sacando el valor del select
+          $(".rolesBD").change(function() {
+            
+          });
+          $.ajax('{{ path('button_action_route') }}', {
+            data: {
+            // you can pass some parameters to the controller here
+            },
+            success: function(data) {
+            // change button color
+            },
+            error: function() {
+              // show alert or something
+            }
+          });
+          return false; // this stops normal button behaviour from executing;
+        });
+      </script>
+    {% endblock %}

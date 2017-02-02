@@ -54,9 +54,18 @@ class DefaultController extends Controller
     }
 
 
-    public function añadirRolesAction()
+    public function quitarRolesAction($roles)
     {
-      $quitarRol = $_POST['taskOption'];
-      echo $quitarRol;
+      $em = $this->getDoctrine()->getManager();
+      $product = $em->getRepository('gestorBundle:User')->find($roles);
+
+      if (!$product) {
+          throw $this->createNotFoundException(
+              'No he encontrado el rol'.$productId
+          );
+      }
+
+      $product->setRoles("");
+      $em->flush();
     }
 }

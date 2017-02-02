@@ -25,7 +25,8 @@ class RegistroController extends Controller
             $password = $this->get('security.password_encoder')
                 ->encodePassword($user, $user->getPlainPassword());
             $user->setPassword($password);
-            $roles->setRoles("ROLE_USER");
+            $roles = ["ROLE_USER"];
+            $user->setRoles($roles);
             // 4) save the User!
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
